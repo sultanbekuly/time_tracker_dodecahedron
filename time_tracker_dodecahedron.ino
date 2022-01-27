@@ -86,7 +86,7 @@ void setup() {
       Serial.print(ssid);
       int i = 0;
       while (WiFi.status() != WL_CONNECTED && i<14) {
-        //в среднем соединяется за 7 попыток
+        //on average, it connects in 7 attempts
         delay(500);
         i++;
         Serial.print(".");
