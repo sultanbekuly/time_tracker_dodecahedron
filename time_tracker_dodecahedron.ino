@@ -140,7 +140,6 @@ void loop() {
     if(sent_cube_side!=cube_side){
       Serial.print("SEND DATA!"); Serial.print('\t');
       sent_cube_side = cube_side; 
-      Serial.print("callhttps_start_time_entry"); Serial.print('\t');
       //callhttps_start_time_entry(trackers[sent_cube_side][0], trackers[sent_cube_side][1]);
       
       if(trackers[sent_cube_side][0] != "STOP"){
