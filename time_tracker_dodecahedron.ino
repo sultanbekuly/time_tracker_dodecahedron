@@ -52,8 +52,6 @@ const int httpsPort = 443; //HTTPS PORT (default: 443)
 ///////////////////////////////Variables////////////////////////////
 
 String datarx; //Received data as string
-long crontimer;
-
 int httpsClientTimeout = 5000; //in millis
 
 int16_t ax, ay, az;
