@@ -60,7 +60,7 @@ int16_t gx, gy, gz;
 
 int last_60_measurements[60] = {};
 //#3 if data is sent, wait till position changed:
-int sent_cube_side = -1;//=0
+int sent_dodecahedron_side = -1;//=0
 ///////////////////////////////Variables////////////////////////////
 
 void setup() {
@@ -118,9 +118,9 @@ void loop() {
   Serial.print(az/327); Serial.print('\t');
   
   //#1Checking of the side of the dodecahedron:
-  int cube_side = get_dodecahedron_side(ax/327, ay/327, az/327);
+  int dodecahedron_side = get_dodecahedron_side(ax/327, ay/327, az/327);
  
-  Serial.print("-> "); Serial.print(cube_side); Serial.print('\t');
+  Serial.print("-> "); Serial.print(dodecahedron_side); Serial.print('\t');
 
   //#2Get if the dodecahedron is on stable position:
   // Need to check if the dodecahedron on same position for 3 seconds 
@@ -129,21 +129,21 @@ void loop() {
   for (int i=0;i<59;i++){
     last_60_measurements[i]=last_60_measurements[i+1];//0=1,1=2..
   }
-  last_60_measurements[59] = cube_side;
+  last_60_measurements[59] = dodecahedron_side;
   //check if stable
-  //#3 if data is sent, wait till position changed: sent_cube_side
+  //#3 if data is sent, wait till position changed: sent_dodecahedron_side
   
   if(checkIfCubeStable(last_60_measurements)){
     Serial.print("Stable position"); Serial.print('\t');
-    if(sent_cube_side!=cube_side){
+    if(sent_dodecahedron_side!=dodecahedron_side){
       Serial.print("SEND DATA!"); Serial.print('\t');
-      sent_cube_side = cube_side; 
-      //callhttps_start_time_entry(trackers[sent_cube_side][0], trackers[sent_cube_side][1]);
+      sent_dodecahedron_side = dodecahedron_side; 
+      //callhttps_start_time_entry(trackers[sent_dodecahedron_side][0], trackers[sent_dodecahedron_side][1]);
       
-      if(trackers[sent_cube_side][0] != "STOP"){
+      if(trackers[sent_dodecahedron_side][0] != "STOP"){
         Serial.print("callhttps_start_time_entry"); Serial.print('\t');
-        callhttps_start_time_entry(trackers[sent_cube_side][0], trackers[sent_cube_side][1]);
-        //callhttps_start_time_entry(trackers[sent_cube_side][0], trackers[sent_cube_side][1], trackers[sent_cube_side][2]);
+        callhttps_start_time_entry(trackers[sent_dodecahedron_side][0], trackers[sent_dodecahedron_side][1]);
+        //callhttps_start_time_entry(trackers[sent_dodecahedron_side][0], trackers[sent_dodecahedron_side][1], trackers[sent_dodecahedron_side][2]);
       }else{
         Serial.println("callhttps_stop_time_entry");
         String timeEntry_id = callhttps_stop_time_entry_p1();
